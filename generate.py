@@ -8,6 +8,7 @@ y = 0
 z = 0.5
 
 pyrosim.Start_SDF("boxes.sdf")
+
 for i in range(5):
    z = 0.5
    y = 0
@@ -27,4 +28,5 @@ for i in range(5):
          height = height * 0.9
       y = y + 1
    x = x + 1
+
 pyrosim.End()
