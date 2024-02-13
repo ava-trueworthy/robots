@@ -3,6 +3,7 @@ import pybullet as p
 import pybullet_data
 import pyrosim.pyrosim as pyrosim
 import numpy
+import random
 
 physicsClient = p.connect(p.GUI)
 p.setAdditionalSearchPath(pybullet_data.getDataPath())
@@ -16,6 +17,27 @@ pyrosim.Prepare_To_Simulate(robotId)
 backLegSensorValues = numpy.zeros(1000)
 frontLegSensorValues = numpy.zeros(1000)
 
+amplitudeBackLeg = numpy.pi/4
+frequencyBackLeg = 10
+phaseOffsetBackLeg = numpy.pi/4
+
+targetAnglesBackLeg = numpy.linspace(0, 2*numpy.pi, num=1000)
+
+for x in range(1000):
+   targetAnglesBackLeg[x] = amplitudeBackLeg * numpy.sin(frequencyBackLeg*targetAnglesBackLeg[x] + phaseOffsetBackLeg)
+
+amplitudeFrontLeg = numpy.pi/4
+frequencyFrontLeg = 10
+phaseOffsetFrontLeg = 0
+
+targetAnglesFrontLeg = numpy.linspace(0, 2*numpy.pi, num=1000)
+
+for x in range(1000):
+   targetAnglesFrontLeg[x] = amplitudeFrontLeg * numpy.sin(frequencyFrontLeg*targetAnglesFrontLeg[x] + phaseOffsetFrontLeg)
+
+numpy.save("data/targetAnglesBackLeg.npy", targetAnglesBackLeg)
+numpy.save("data/targetAnglesFrontLeg.npy", targetAnglesFrontLeg)
+
 for x in range(1000):
    p.stepSimulation()
 
@@ -28,7 +50,13 @@ for x in range(1000):
    pyrosim.Set_Motor_For_Joint(bodyIndex=robotId, 
                                jointName="Torso_BackLeg",
                                controlMode=p.POSITION_CONTROL,
-                               targetPosition=0.0,
+                               targetPosition=targetAnglesBackLeg[x],
+                               maxForce=500)
+
+   pyrosim.Set_Motor_For_Joint(bodyIndex=robotId,
+                               jointName="Torso_FrontLeg",
+                               controlMode=p.POSITION_CONTROL,
+                               targetPosition=targetAnglesFrontLeg[x],
                                maxForce=500)
 
    time.sleep(.001)
