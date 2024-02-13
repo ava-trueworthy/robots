@@ -17,9 +17,9 @@ pyrosim.Prepare_To_Simulate(robotId)
 backLegSensorValues = numpy.zeros(1000)
 frontLegSensorValues = numpy.zeros(1000)
 
-amplitudeBackLeg = numpy.pi/4
-frequencyBackLeg = 20
-phaseOffsetBackLeg = numpy.pi/2
+amplitudeBackLeg = numpy.pi/8
+frequencyBackLeg = 10
+phaseOffsetBackLeg = 0
 
 targetAnglesBackLeg = numpy.linspace(0, 2*numpy.pi, num=1000)
 
@@ -27,8 +27,8 @@ for x in range(1000):
    targetAnglesBackLeg[x] = amplitudeBackLeg * numpy.sin(frequencyBackLeg*targetAnglesBackLeg[x] + phaseOffsetBackLeg)
 
 amplitudeFrontLeg = numpy.pi/4
-frequencyFrontLeg = 20
-phaseOffsetFrontLeg = 0
+frequencyFrontLeg = 10
+phaseOffsetFrontLeg = numpy.pi/4
 
 targetAnglesFrontLeg = numpy.linspace(0, 2*numpy.pi, num=1000)
 
