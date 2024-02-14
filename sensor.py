@@ -8,5 +8,6 @@ class SENSOR:
       self.values = numpy.zeros(1000)
 
    def Get_Value(self, time):
-      self.values[time] = pyrosim.Get_Touch_Sensor_Value_For_Link("linkName")
-      print(self.values)
+      self.values[time] = pyrosim.Get_Touch_Sensor_Value_For_Link(self.linkName)
+      if time == 999:
+         print(self.values)
