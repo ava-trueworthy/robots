@@ -22,6 +22,7 @@ class SIMULATION:
          p.stepSimulation()
 
          self.robot.Sense(x)
+         self.robot.Think(x)
          self.robot.Act(x)
 
          time.sleep(.001)

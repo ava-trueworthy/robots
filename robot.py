@@ -27,6 +27,9 @@ class ROBOT:
       for sensorInstance in self.sensors:
          self.sensors[sensorInstance].Get_Value(time)
 
+   def Think(self, time):
+      pass
+
    def Act(self, time):
       for motorInstance in self.motors:
          self.motors[motorInstance].Set_Value(time, self.robotId)
