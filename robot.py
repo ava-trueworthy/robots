@@ -34,5 +34,9 @@ class ROBOT:
       self.nn.Print()
 
    def Act(self, time):
+      for neuronName in self.nn.Get_Neuron_Names():
+         if self.nn.Is_Motor_Neuron(neuronName):
+            print(neuronName)
+
       for motorInstance in self.motors:
          self.motors[motorInstance].Set_Value(time, self.robotId)
