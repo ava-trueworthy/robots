@@ -26,3 +26,5 @@ for x in range(1000):
 numpy.save("data/targetAnglesBackLeg.npy", targetAnglesBackLeg)
 numpy.save("data/targetAnglesFrontLeg.npy", targetAnglesFrontLeg)
 """
+
+numberOfGenerations = 10
