@@ -12,3 +12,4 @@ for i in range(5):
 hc = HILL_CLIMBER()
 
 
+hc.Evolve()
