@@ -37,7 +37,7 @@ class SIMULATION:
          self.robot.Think(x)
          self.robot.Act(x)
 
-         time.sleep(.000000001)
+         time.sleep(.0001)
 
    def Get_Fitness(self):
 

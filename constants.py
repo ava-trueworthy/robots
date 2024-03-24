@@ -29,4 +29,4 @@ numpy.save("data/targetAnglesFrontLeg.npy", targetAnglesFrontLeg)
 
 numberOfGenerations = 10
 
-populationSize = 2
+populationSize = 10

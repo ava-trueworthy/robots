@@ -15,7 +15,7 @@ class SOLUTION:
       
       self.weights = self.weights * 2 - 1
 
-
+   """
    def Evaluate(self, directOrGUI):
       
       self.Create_World()
@@ -31,6 +31,26 @@ class SOLUTION:
       fitnessFile = open("fitness" + str(self.myID) + ".txt", "r")
       self.fitness = float(fitnessFile.read())
       fitnessFile.close()
+   """
+   def Start_Simulation(self, directOrGUI):
+
+      self.Create_World()
+      self.Generate_Body()
+      self.Generate_Brain()
+
+      os.system("python3 simulate.py " + directOrGUI + " " + str(self.myID) + " &")
+
+   def Wait_For_Simulation_To_End(self):
+
+      while not os.path.exists("fitness" + str(self.myID) + ".txt"):
+
+         time.sleep(0.01)
+
+      fitnessFile = open("fitness" + str(self.myID) + ".txt", "r")
+      self.fitness = float(fitnessFile.read())
+      fitnessFile.close()
+      
+      os.system("rm fitness" + str(self.myID) + ".txt")
 
    def Mutate(self):
 
