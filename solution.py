@@ -1,3 +1,4 @@
+import constants as c
 import numpy as np
 import os
 import pyrosim.pyrosim as pyrosim
@@ -15,30 +16,13 @@ class SOLUTION:
       
       self.weights = self.weights * 2 - 1
 
-   """
-   def Evaluate(self, directOrGUI):
-      
-      self.Create_World()
-      self.Generate_Body()
-      self.Generate_Brain()
-
-      os.system("python3 simulate.py " + directOrGUI + " " + str(self.myID) + " &")
-      
-      while not os.path.exists("fitness" + str(self.myID) + ".txt"):
-
-         time.sleep(0.01)
-      
-      fitnessFile = open("fitness" + str(self.myID) + ".txt", "r")
-      self.fitness = float(fitnessFile.read())
-      fitnessFile.close()
-   """
    def Start_Simulation(self, directOrGUI):
 
       self.Create_World()
       self.Generate_Body()
       self.Generate_Brain()
 
-      os.system("python3 simulate.py " + directOrGUI + " " + str(self.myID) + " &")
+      os.system("python3 simulate.py " + directOrGUI + " " + str(self.myID) + " 2&>1 &")
 
    def Wait_For_Simulation_To_End(self):
 
@@ -95,14 +79,14 @@ class SOLUTION:
       pyrosim.Send_Motor_Neuron(name=3, jointName="Torso_BackLeg")
       pyrosim.Send_Motor_Neuron(name=4, jointName="Torso_FrontLeg")
 
-      for currentRow in range(3):
+      for currentRow in range(c.numSensorNeurons):
 
-         for currentColumn in range(2):
+         for currentColumn in range(c.numMotorNeurons):
 
-            pyrosim.Send_Synapse(sourceNeuronName=str(currentRow), targetNeuronName=str(currentColumn+3), weight=self.weights[currentRow][currentColumn])
+            pyrosim.Send_Synapse(sourceNeuronName=str(currentRow), targetNeuronName=str(currentColumn+c.numSensorNeurons), weight=self.weights[currentRow][currentColumn])
 
       pyrosim.End()
-
+      
    def Set_ID(self, myID):
 
       self.myID = myID
