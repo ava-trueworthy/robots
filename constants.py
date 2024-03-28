@@ -27,10 +27,10 @@ numpy.save("data/targetAnglesBackLeg.npy", targetAnglesBackLeg)
 numpy.save("data/targetAnglesFrontLeg.npy", targetAnglesFrontLeg)
 """
 
-numberOfGenerations = 1
+numberOfGenerations = 10
 
-populationSize = 1
+populationSize = 10
 
-numSensorNeurons = 3
+numSensorNeurons = 9
 
-numMotorNeurons = 2
+numMotorNeurons = 8
